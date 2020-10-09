@@ -34,7 +34,6 @@ public class ScheduledMessagingScript {
 
     private void getCommunicationObjects() {
         try {
-
             ObjectMapper objectMapper = new ObjectMapper();
             communications = objectMapper.readValue(
                     new File("src/main/resources/communication.json"),
