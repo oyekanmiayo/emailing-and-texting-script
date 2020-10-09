@@ -5,6 +5,7 @@ import com.communicator.emailingandtextingscript.utils.EmailSender;
 import com.communicator.emailingandtextingscript.utils.SmsSender;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,9 @@ public class ScheduledMessagingScript {
 
     private final SmsSender smsSender;
     private final EmailSender emailSender;
+
+    @Value("#{T(java.lang.Boolean).parseBoolean('${start.cron}')}")
+    private Boolean isScriptActive;
     private List<Communication> communications;
     private int index;
 
@@ -46,6 +50,11 @@ public class ScheduledMessagingScript {
 
     @Scheduled(cron = "${dispatch.cron}", zone = "GMT+1")
     public void dispatchCommunication() {
+
+        if (!isScriptActive) {
+            return;
+        }
+
         // This resets index, so that communication is started from the beginning
         // May not be what you want
         if (index == communications.size()) {
