@@ -14,6 +14,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Communication {
+    String governmentOfficialName;
+    String governmentPosition;
     String phoneNumber;
     String phoneMessage;
     String email;
