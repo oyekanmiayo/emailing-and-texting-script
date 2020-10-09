@@ -8,13 +8,16 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Properties;
 
 @EnableAsync
 @EnableScheduling
+@RestController
 @SpringBootApplication
 public class EmailingAndTextingScriptApplication {
 
@@ -72,7 +75,7 @@ public class EmailingAndTextingScriptApplication {
     }
 
     /** To test that app deployed properly **/
-    @RequestMapping("/")
+    @GetMapping("/")
     @ResponseBody
     String home() {
         return "<p>Cron service to send messages</p>";
