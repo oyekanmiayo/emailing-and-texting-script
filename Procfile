@@ -1,0 +1,1 @@
+web: java -jar -Dserver.port=$PORT $JAVA_OPTS target/emailing-and-texting-script-0.0.1-SNAPSHOT.jar
