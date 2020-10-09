@@ -11,7 +11,8 @@ Java code to send emails and texts at intervals. Made to support the #EndSarsNow
 * Twilio Account (for SMS)
 * Gmail & Gmail App Password (Read about how to create a gmail app password [here](https://support.google.com/accounts/answer/185833))
 
-## Relevant Properties To Fill In [Properties File](https://github.com/oyekanmiayo/emailing-and-texting-script/blob/master/src/main/resources/application.properties)
+## Relevant Properties
+Fill in [properties file](https://github.com/oyekanmiayo/emailing-and-texting-script/blob/master/src/main/resources/application.properties)
 1. `spring.mail.username` - Gmail address
 2. `spring.mail.password` - Gmail App Password
 3. `account.sid` - Account SID from Twilio Account
