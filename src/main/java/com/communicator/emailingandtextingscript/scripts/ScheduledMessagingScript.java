@@ -27,6 +27,10 @@ public class ScheduledMessagingScript {
 
     @Value("#{T(java.lang.Boolean).parseBoolean('${start.cron}')}")
     private Boolean isScriptActive;
+    @Value("#{T(java.lang.Boolean).parseBoolean('${send.sms}')}")
+    private Boolean sendSms;
+    @Value("#{T(java.lang.Boolean).parseBoolean('${send.email}')}")
+    private Boolean sendEmail;
     private List<Communication> communications;
     private int index;
 
@@ -62,8 +66,14 @@ public class ScheduledMessagingScript {
         }
 
         Communication communication = communications.get(index);
-        smsSender.sendSms(communication.getPhoneNumber(), communication.getPhoneMessage());
-        emailSender.sendEmail(communication.getEmail(), "#EndSarsNow", communication.getEmailMessage());
+        if (sendSms) {
+            smsSender.sendSms(communication.getPhoneNumber(), communication.getPhoneMessage());
+        }
+
+        if (sendEmail) {
+            emailSender.sendEmail(communication.getEmail(), "#EndSarsNow", communication.getEmailMessage());
+        }
+
         index++;
     }
 }
