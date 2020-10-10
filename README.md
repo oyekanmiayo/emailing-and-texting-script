@@ -18,7 +18,7 @@ Fill in [properties file](https://github.com/oyekanmiayo/emailing-and-texting-sc
 3. `account.sid` - Account SID from Twilio Account
 4. `auth.token` - Authentication token from Twilio Account
 5. `from.phone.number` - Phone number from Twilio Account
-6. `dispatch.cron` - Define the cron to send smses and emails to each official [here](https://github.com/oyekanmiayo/emailing-and-texting-script/blob/master/src/main/resources/communication.json). It is currently set to send the smses and emails by 9am every day.
+6. `dispatch.cron` - Define the cron to send smses and emails to each official [here](https://github.com/oyekanmiayo/emailing-and-texting-script/blob/master/src/main/resources/communication.json). **It is currently set to send the smses and emails by 9am every day.**
 7. `activate.script` - Set to true/false to activate/deactivate the script
 8. `send.sms` - Set to false/true to turn off/on sending smses
 9. `send.email` - Set to false/true to turn off/on sending emails
