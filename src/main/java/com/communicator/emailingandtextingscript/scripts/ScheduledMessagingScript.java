@@ -59,21 +59,14 @@ public class ScheduledMessagingScript {
             return;
         }
 
-        // This resets index, so that communication is started from the beginning
-        // May not be what you want
-        if (index == communications.size()) {
-            index = 0;
-        }
+        communications.forEach(communication -> {
+            if (sendSms) {
+                smsSender.sendSms(communication.getPhoneNumber(), communication.getPhoneMessage());
+            }
 
-        Communication communication = communications.get(index);
-        if (sendSms) {
-            smsSender.sendSms(communication.getPhoneNumber(), communication.getPhoneMessage());
-        }
-
-        if (sendEmail) {
-            emailSender.sendEmail(communication.getEmail(), "#EndSarsNow", communication.getEmailMessage());
-        }
-
-        index++;
+            if (sendEmail) {
+                emailSender.sendEmail(communication.getEmail(), "#EndSarsNow", communication.getEmailMessage());
+            }
+        });
     }
 }
