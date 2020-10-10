@@ -5,6 +5,7 @@ import com.communicator.emailingandtextingscript.utils.EmailSender;
 import com.communicator.emailingandtextingscript.utils.SmsSender;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,7 @@ import java.util.List;
  * @author: aoyekanmi
  * @date: 09/10/2020
  */
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class ScheduledMessagingScript {
@@ -56,6 +58,7 @@ public class ScheduledMessagingScript {
     public void dispatchCommunication() {
 
         if (!isScriptActive) {
+            log.info("Script is not active");
             return;
         }
 
