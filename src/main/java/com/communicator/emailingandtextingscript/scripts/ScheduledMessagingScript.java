@@ -25,7 +25,7 @@ public class ScheduledMessagingScript {
     private final SmsSender smsSender;
     private final EmailSender emailSender;
 
-    @Value("#{T(java.lang.Boolean).parseBoolean('${start.cron}')}")
+    @Value("#{T(java.lang.Boolean).parseBoolean('${activate.script}')}")
     private Boolean isScriptActive;
     @Value("#{T(java.lang.Boolean).parseBoolean('${send.sms}')}")
     private Boolean sendSms;

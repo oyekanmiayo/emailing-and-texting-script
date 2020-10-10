@@ -20,6 +20,8 @@ Fill in [properties file](https://github.com/oyekanmiayo/emailing-and-texting-sc
 5. `from.phone.number` - Phone number from Twilio Account
 6. `dispatch.cron` - Define the cron to send smses and emails to each official [here](https://github.com/oyekanmiayo/emailing-and-texting-script/blob/master/src/main/resources/communication.json)
 7. `start.cron` - Set to true to turn on script and false to turn off
+8. `send.sms` - Set to false/true to turn off/on sending smses
+9. `send.email` - Set to false/true to turn off/on sending emails
 
 See details on how to generate a good cron for Spring [here](https://www.baeldung.com/cron-expressions)
 
