@@ -29,6 +29,14 @@ public class SmsSender {
 
     @Async
     public void sendSms(String toPhoneNumber, String phoneMessage) {
+        if (toPhoneNumber == null || !toPhoneNumber.startsWith("+234")) {
+            return;
+        }
+
+        if (phoneMessage == null || phoneMessage.isEmpty()) {
+            return;
+        }
+
         try {
             Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
             Message.creator(new PhoneNumber(toPhoneNumber),

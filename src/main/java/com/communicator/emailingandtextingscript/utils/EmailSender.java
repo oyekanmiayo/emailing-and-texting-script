@@ -25,6 +25,10 @@ public class EmailSender {
 
     @Async
     public void sendEmail(String to, String subject, String body) {
+        if (to == null || body == null || body.isEmpty()) {
+            return;
+        }
+
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
