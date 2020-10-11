@@ -34,11 +34,9 @@ public class ScheduledMessagingScript {
     @Value("#{T(java.lang.Boolean).parseBoolean('${send.email}')}")
     private Boolean sendEmail;
     private List<Communication> communications;
-    private int index;
 
     @PostConstruct
     public void init() {
-        index = 0;
         getCommunicationObjects();
     }
 
@@ -62,6 +60,7 @@ public class ScheduledMessagingScript {
             return;
         }
 
+        log.info("Script is active");
         communications.forEach(communication -> {
             if (sendSms) {
                 smsSender.sendSms(communication.getPhoneNumber(), communication.getPhoneMessage());
