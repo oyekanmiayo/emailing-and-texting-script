@@ -30,9 +30,10 @@ See details on how to generate a good cron for Spring [here](https://www.baeldun
 2. Login to Heroku (on your browser)
 3. Create a new app
 4. Go into the directory of this application via your terminal:
+- `cd ~/emailing-and-texting-script`
 - `heroku login`
 - `heroku git:remote -a {name.of.the.app.you.created}`
-- `git push heroku master`
+- `git push heroku master` or `git push heroku {your.local.branch}:master` if you're not pushing from your local master branch
 
 ## Urgent
 * Fork repo
