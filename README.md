@@ -39,3 +39,11 @@ See details on how to generate a good cron for Spring [here](https://www.baeldun
 * Fork repo
 * Fill in government official details [here](https://github.com/oyekanmiayo/emailing-and-texting-script/blob/master/src/main/resources/communication.json)
 * Create PR
+
+## Contributions
+Contributions are very welcome. See the [issues](https://github.com/oyekanmiayo/emailing-and-texting-script/issues)
+
+## Contributors
+* [Oluwa-Nifemi](https://github.com/Oluwa-nifemi)
+* [Chidi Williams](https://github.com/chidiwilliams)
+
