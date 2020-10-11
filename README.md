@@ -35,7 +35,32 @@ See details on how to generate a good cron for Spring [here](https://www.baeldun
 - `heroku git:remote -a {name.of.the.app.you.created}`
 - `git push heroku master` or `git push heroku {your.local.branch}:master` if you're not pushing from your local master branch
 
+## Ways to Run Locally
+* Use relevant cron and run the application
+* Add to `EmailingAndTextingScriptApplication` and run the application
+
+  ```
+  @Autowired
+  ScheduledMessagingScript messagingScript;
+
+  @Bean
+
+      public CommandLineRunner runScript() {
+          return args -> {
+              messagingScript.dispatchCommunication();
+          };
+      }
+  ```
+
 ## Urgent
 * Fork repo
 * Fill in government official details [here](https://github.com/oyekanmiayo/emailing-and-texting-script/blob/master/src/main/resources/communication.json)
 * Create PR
+
+## Contributions
+Contributions are very welcome. See the [issues](https://github.com/oyekanmiayo/emailing-and-texting-script/issues)
+
+## Contributors
+* [Oluwa-Nifemi](https://github.com/Oluwa-nifemi)
+* [Chidi Williams](https://github.com/chidiwilliams)
+
