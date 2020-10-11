@@ -1,5 +1,6 @@
 package com.communicator.emailingandtextingscript.entities;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +14,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonPropertyOrder({ "governmentOfficialName", "governmentPosition",
+                    "phoneNumber", "phoneMessage", "email", "emailMessage"})
 public class Communication {
     String governmentOfficialName;
     String governmentPosition;
