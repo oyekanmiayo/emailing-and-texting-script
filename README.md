@@ -64,3 +64,5 @@ Contributions are very welcome. See the [issues](https://github.com/oyekanmiayo/
 * [Oluwa-Nifemi](https://github.com/Oluwa-nifemi)
 * [Chidi Williams](https://github.com/chidiwilliams)
 
+## Relevant Third Party Tools
+* [Convert CSV to JSON](https://csvjson.com/csv2json)
