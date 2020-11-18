@@ -4,11 +4,13 @@ import com.communicator.emailingandtextingscript.entities.Communication;
 import com.communicator.emailingandtextingscript.utils.EmailSender;
 import com.communicator.emailingandtextingscript.utils.SmsSender;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
@@ -33,20 +35,20 @@ public class ScheduledMessagingScript {
     private Boolean sendSms;
     @Value("#{T(java.lang.Boolean).parseBoolean('${send.email}')}")
     private Boolean sendEmail;
-    private List<Communication> communications;
+    public List<Communication> communications;
+
+    final String DEFAULT_PATH_NAME = "src/main/resources/communication.json";
 
     @PostConstruct
     public void init() {
-        getCommunicationObjects();
+        initCommunicationObjects(new File(DEFAULT_PATH_NAME));
     }
 
-    private void getCommunicationObjects() {
+    public void initCommunicationObjects(File file) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            communications = objectMapper.readValue(
-                    new File("src/main/resources/communication.json"),
-                    objectMapper.getTypeFactory().constructCollectionType(List.class, Communication.class));
-
+            CollectionType listType = objectMapper.getTypeFactory().constructCollectionType(List.class, Communication.class);
+            communications = objectMapper.readValue(file, listType);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,5 +72,9 @@ public class ScheduledMessagingScript {
                 emailSender.sendEmail(communication.getEmail(), "#EndSarsNow", communication.getEmailMessage());
             }
         });
+    }
+
+    public List<Communication> getCommunications() {
+        return communications;
     }
 }
