@@ -3,7 +3,9 @@ package com.communicator.emailingandtextingscript.scripts;
 import com.communicator.emailingandtextingscript.entities.Communication;
 import com.communicator.emailingandtextingscript.utils.EmailSender;
 import com.communicator.emailingandtextingscript.utils.SmsSender;
+import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,21 +37,37 @@ public class ScheduledMessagingScript {
     private Boolean sendEmail;
     private List<Communication> communications;
 
+    @Value("${document.format}")
+    private String documentFormat;
+
     @PostConstruct
     public void init() {
         getCommunicationObjects();
     }
 
     private void getCommunicationObjects() {
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            communications = objectMapper.readValue(
-                    new File("src/main/resources/communication.json"),
-                    objectMapper.getTypeFactory().constructCollectionType(List.class, Communication.class));
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(documentFormat.equalsIgnoreCase("json")){
+            try {
+                ObjectMapper objectMapper = new ObjectMapper();
+                communications = objectMapper.readValue(
+                        new File("src/main/resources/communication.json"),
+                        objectMapper.getTypeFactory().constructCollectionType(List.class, Communication.class));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else if(documentFormat.equalsIgnoreCase("csv")){
+            try {
+                MappingIterator<Communication> iterator = new CsvMapper()
+                                .readerWithTypedSchemaFor(Communication.class)
+                                .readValues(new File("src/main/resources/communicationcsv.csv"));
+                communications = iterator.readAll();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     @Scheduled(cron = "${dispatch.cron}", zone = "GMT+1")
